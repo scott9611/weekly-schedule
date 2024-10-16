@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', 'NMBgl5CPya2IVLuSWxDh90_I1fiArSEKULu9R9uJj26fsnenUyxsNdAOdHKEIresicE')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -68,9 +68,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('POSTGRES_DB', 'postgres'),
-        'USER': os.getenv('POSTGRES_USER', 'admin'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'admin'),
-        'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
+        'USER': os.getenv('POSTGRES_USER', 'steven'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'steven'),
+        'HOST': os.getenv('POSTGRES_HOST', 'db'),
         'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
 }
