@@ -1,0 +1,34 @@
+services:
+  web:
+    build:
+      context: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=schedule.settings
+      - SECRET_KEY=NMBgl5CPya2IVLuSWxDh90_I1fiArSEKULu9R9uJj26fsnenUyxsNdAOdHKEIresicE
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=steven
+      - POSTGRES_PASSWORD=steven
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+    depends_on:
+      - db
+    entrypoint: ["./entrypoint.sh"]
+
+  db:
+    image: postgres:16-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=steven
+      - POSTGRES_PASSWORD=steven
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
+
