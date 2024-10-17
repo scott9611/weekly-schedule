@@ -139,8 +139,9 @@ SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
         'Bearer': {
             'type': 'apiKey',
-            'name': 'Please enter "Bearer " followed by the access token',
-            'in': 'header'
+            'name': 'Authorization',
+            'in': 'header',
+            'description': "Specify the access token with the `Bearer` prefix, for example, `Bearer abcde12345`"
         }
     },
     'USE_SESSION_AUTH': False,
