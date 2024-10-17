@@ -46,16 +46,6 @@ This project demonstrates how to implement JSON Web Token (JWT) authentication i
    python manage.py runserver
    ```
 
-### Docker Development
-
-1. Setup Docker on your machine
-
-2. Run the Docker container:
-   ```
-   docker compose -f docker-compose.dev.yml up -d --build
-   ```
-
-
 ## JWT Authentication
 
 This project uses `djangorestframework-simplejwt` for JWT authentication. Here's how to use it:

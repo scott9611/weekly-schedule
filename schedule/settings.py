@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from django.urls import reverse_lazy
 from dotenv import load_dotenv
+import dj_database_url
 
 # Load environment variables from .env file
 load_dotenv()
@@ -67,11 +68,11 @@ WSGI_APPLICATION = 'schedule.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB', 'postgres'),
-        'USER': os.getenv('POSTGRES_USER', 'steven'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'steven'),
-        'HOST': os.getenv('POSTGRES_HOST', 'db'),
-        'PORT': os.getenv('POSTGRES_PORT', '5432'),
+        'NAME': 'schedule',
+        'USER': 'admin',
+        'PASSWORD': '12345',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
