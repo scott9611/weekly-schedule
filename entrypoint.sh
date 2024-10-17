@@ -16,7 +16,3 @@ if not User.objects.filter(username='admin').exists():
 else:
     print("Superuser already exists.")
 END
-
-# Start server
-echo "Starting server..."
-python manage.py runserver 0.0.0.0:8000
