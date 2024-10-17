@@ -54,8 +54,8 @@ This project uses `djangorestframework-simplejwt` for JWT authentication. Here's
    ```
    POST /api/token/
    {
-     "username": "your_username",
-     "password": "your_password"
+     "username": "admin",
+     "password": "12345"
    }
    ```
 

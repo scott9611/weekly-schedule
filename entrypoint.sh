@@ -13,5 +13,8 @@ echo "Applying database migrations..."
 python manage.py makemigrations
 python manage.py migrate
 
-# Start the main application
+# Ensure Nginx can access static files
+chmod -R 755 /app/staticfiles
+
+# Start server
 exec "$@"
