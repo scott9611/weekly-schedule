@@ -8,8 +8,7 @@ class WeeklyScheduleTests(APITestCase):
     def setUp(self):
         """
         Set up the test environment before each test method is run.
-        This method initializes the API client, creates a test user,
-        and sets up the admin client for authenticated requests.
+        This method initializes the API client, creates a test user, and sets up the admin client for authenticated requests.
         """
         self.client = APIClient()
         self.url = reverse('weeklyschedule-list')
@@ -24,8 +23,7 @@ class WeeklyScheduleTests(APITestCase):
     def obtain_token(self):
         """
         Obtain an authentication token for the test user.
-        This method sends a POST request to the token endpoint and
-        sets the obtained token as the authorization header for subsequent requests.
+        This method sends a POST request to the token endpoint and sets the obtained token as the authorization header for subsequent requests.
         """
         response = self.client.post('/api/token/', data={"username": "admin", "password": "12345"}, format='json')
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + response.data['access'])
@@ -33,8 +31,7 @@ class WeeklyScheduleTests(APITestCase):
     def test_create_weekly_schedule(self):
         """
         Test the creation of a weekly schedule.
-        This method sends a POST request to create a new weekly schedule
-        and asserts that the response status code is 201 (Created).
+        This method sends a POST request to create a new weekly schedule and asserts that the response status code is 201 (Created).
         """
         self.obtain_token()
         data = {
@@ -67,8 +64,7 @@ class WeeklyScheduleTests(APITestCase):
     def test_get_weekly_schedules(self):
         """
         Test retrieving all weekly schedules.
-        This method sends a GET request to fetch all weekly schedules
-        and asserts that the response status code is 200 (OK).
+        This method sends a GET request to fetch all weekly schedules and asserts that the response status code is 200 (OK).
         """
         self.obtain_token()
         response = self.client.get(self.url, format='json')
@@ -77,8 +73,7 @@ class WeeklyScheduleTests(APITestCase):
     def test_update_weekly_schedule(self):
         """
         Test updating a weekly schedule.
-        This method sends a PUT request to update an existing weekly schedule
-        and asserts that the response status code is 200 (OK).
+        This method sends a PUT request to update an existing weekly schedule and asserts that the response status code is 200 (OK).
         """
         self.obtain_token()
         schedule = WeeklySchedule.objects.create()
@@ -113,8 +108,7 @@ class WeeklyScheduleTests(APITestCase):
     def test_delete_weekly_schedule(self):
         """
         Test deleting a weekly schedule.
-        This method sends a DELETE request to remove an existing weekly schedule
-        and asserts that the response status code is 204 (No Content).
+        This method sends a DELETE request to remove an existing weekly schedule and asserts that the response status code is 204 (No Content).
         """
         self.obtain_token()
         schedule = WeeklySchedule.objects.create()

@@ -2,11 +2,22 @@ from rest_framework import serializers
 from .models import TimeSlot, WeeklySchedule
 
 class TimeSlotSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the TimeSlot model.
+
+    This serializer handles the serialization and deserialization of the TimeSlot model.
+    """
     class Meta:
         model = TimeSlot
         fields = '__all__'
 
 class WeeklyScheduleSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the WeeklySchedule model.
+
+    This serializer handles the serialization and deserialization of the WeeklySchedule model.
+    It includes nested serializers for the TimeSlot objects associated with each day of the week.
+    """
     monday = TimeSlotSerializer(many=True)
     tuesday = TimeSlotSerializer(many=True)
     wednesday = TimeSlotSerializer(many=True)
@@ -37,10 +48,8 @@ class WeeklyScheduleSerializer(serializers.ModelSerializer):
         saturday_data = validated_data.pop('saturday')
         sunday_data = validated_data.pop('sunday')
 
-        # Create the WeeklySchedule object
         weekly_schedule = WeeklySchedule.objects.create(**validated_data)
 
-        # Create and add TimeSlots for each day
         for time_slot_data in monday_data:
             time_slot = TimeSlot.objects.create(**time_slot_data)
             weekly_schedule.monday.add(time_slot)
@@ -82,7 +91,7 @@ class WeeklyScheduleSerializer(serializers.ModelSerializer):
         Returns:
             WeeklySchedule: The updated WeeklySchedule instance with new associated TimeSlots.
         """
-        # Extract nested data for each day
+        
         monday_data = validated_data.pop('monday')
         tuesday_data = validated_data.pop('tuesday')
         wednesday_data = validated_data.pop('wednesday')
@@ -91,10 +100,8 @@ class WeeklyScheduleSerializer(serializers.ModelSerializer):
         saturday_data = validated_data.pop('saturday')
         sunday_data = validated_data.pop('sunday')
 
-        # Update the WeeklySchedule object
         instance.save()
 
-        # Clear existing TimeSlots for each day
         instance.monday.clear()
         instance.tuesday.clear()
         instance.wednesday.clear()
@@ -103,7 +110,6 @@ class WeeklyScheduleSerializer(serializers.ModelSerializer):
         instance.saturday.clear()
         instance.sunday.clear()
 
-        # Create and add new TimeSlots for each day
         for time_slot_data in monday_data:
             time_slot = TimeSlot.objects.create(**time_slot_data)
             instance.monday.add(time_slot)
