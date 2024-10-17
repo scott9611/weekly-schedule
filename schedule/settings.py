@@ -17,7 +17,12 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'NMBgl5CPya2IVLuSWxDh90_I1fiArSEKULu9R9uJj2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'weekly-schedule-1.onrender.com',
+    os.environ.get('RENDER_EXTERNAL_HOSTNAME', ''),
+]
 
 # Application definition
 INSTALLED_APPS = [
